@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "SignUpFailed";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<body>
+    <div class="art-bothside">
+        <div class="sap_tabs">
+            <div id="horizontalTab">
+                <div class="resp-tabs-container">
+                    <div class="for">
+                        The Email Address you have entered is already exists.
+                    </div>
+                    <div class="btnn2">
+                        @using (Html.BeginForm(FormMethod.Post))
+                        {
+                            <button>@Html.ActionLink("Sign Up Again", "Login", "Account")</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
