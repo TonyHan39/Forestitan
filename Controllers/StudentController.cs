@@ -22,7 +22,7 @@ namespace Forestitan.Controllers
 
         public ActionResult GetData()
         {
-            using(StudentEntities db =new StudentEntities())
+            using(StudentEntities db = new StudentEntities())
             {
                 List<Student> students = db.Students.ToList<Student>();
                 return Json(new { data = students }, JsonRequestBehavior.AllowGet);

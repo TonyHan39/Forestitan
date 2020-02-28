@@ -27,7 +27,7 @@ namespace Forestitan.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "*Required")]
-        [MinLength(10, ErrorMessage = "Phone Number should be at least 11 digit")]
+        [MinLength(10)]
         [MaxLength(12)]
         public string PhoneNo { get; set; }
 

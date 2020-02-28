@@ -424,6 +424,19 @@ color: #000;
 .btnn{
 text-align: left;
 }
+.button.btnn2 {
+    width: 35%;
+    background: #f47721;
+    outline: none;
+    color: #fff;
+    font-size: 13px;
+    border: none;
+    padding: 14px 6px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.5s all;
+}
 button[type=submit] {
 width:35%;
 background: #f47721;

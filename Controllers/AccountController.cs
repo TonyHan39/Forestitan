@@ -39,7 +39,8 @@ namespace Forestitan.Controllers
                 {
                     Session["userID"] = user.UserID;
                     Session["userName"] = user.UserName;
-                    return RedirectToAction("StudentList", "Student");
+                    Session["Email"] = user.Email;
+                    return RedirectToAction("Welcome", "Account");
                 }
             }
             
@@ -66,14 +67,27 @@ namespace Forestitan.Controllers
                 }
                 UserAccount user = new UserAccount();
                 userModel.UserID = Guid.NewGuid();
-                //userModel.DateRegister = DateTime.Now.ToString();
+                //userModel.DateRegister = DateTime.UtcNow();
                 userModel.Password = PasswordEncryption.textToEncrypt(userModel.Password);
                 dbmodel.UserAccounts.Add(userModel);
                 dbmodel.SaveChanges();
                 ModelState.Clear();
                 return View("SignUp", user);
             }
-            
+        }
+
+        public ActionResult Welcome()
+        {
+            return View();
+        }
+
+        public ActionResult UserList()
+        {
+            using (UsersEntities db = new UsersEntities())
+            {
+                List<UserAccount> user = db.UserAccounts.ToList<UserAccount>();
+                return Json(new { data = user }, JsonRequestBehavior.AllowGet);
+            }
         }
         //protected ActionResult SignUp(object sender, EventArgs e)
         //{
@@ -122,11 +136,7 @@ namespace Forestitan.Controllers
         //    return View("Error");
         //}
 
-        public ActionResult UserList()
-        {
-            var res = dbmodel.UserAccounts.ToList();
-            return View(res);
-        }
+
     }
 }
 

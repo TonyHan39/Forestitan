@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "Welcome";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<h2>Welcome @Session["userName"].ToString()</h2>
+<br />
+<p>User ID: @Session["userID"].ToString()</p>
+<p>User Name: @Session["userName"].ToString()</p>
+<p>Email: @Session["Email"].ToString()</p>

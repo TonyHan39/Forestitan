@@ -346,6 +346,7 @@
     <Content Include="Models\dbUserModel1.edmx.diagram">
       <DependentUpon>dbUserModel1.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\easyResponsiveTabs.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
@@ -382,6 +383,7 @@
     <Content Include="Views\Student\StudentList.cshtml" />
     <Content Include="Views\Student\AddOrEdit.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Welcome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
