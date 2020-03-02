@@ -67,7 +67,7 @@ namespace Forestitan.Controllers
                 }
                 UserAccount user = new UserAccount();
                 userModel.UserID = Guid.NewGuid();
-                //userModel.DateRegister = DateTime.UtcNow();
+                userModel.DateRegister = DateTime.Now;
                 userModel.Password = PasswordEncryption.textToEncrypt(userModel.Password);
                 dbmodel.UserAccounts.Add(userModel);
                 dbmodel.SaveChanges();
@@ -81,14 +81,19 @@ namespace Forestitan.Controllers
             return View();
         }
 
-        public ActionResult UserList()
-        {
-            using (UsersEntities db = new UsersEntities())
-            {
-                List<UserAccount> user = db.UserAccounts.ToList<UserAccount>();
-                return Json(new { data = user }, JsonRequestBehavior.AllowGet);
-            }
-        }
+        
+
+        //public List<UserAccount> GetUserList()
+        //{
+        //    using(var context = new UsersEntities())
+        //    {
+        //        var result = context.UserAccounts.Select(x => new UserAccount() {
+        //            UserName=x.UserName,
+        //            Email=x.Email
+                    
+        //        }).ToList();
+        //    }
+        //}
 
         //protected ActionResult SignUp(object sender, EventArgs e)
         //{

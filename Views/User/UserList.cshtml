@@ -1,0 +1,72 @@
+﻿@model List<Forestitan.Models.UserAccount>
+@{
+    ViewBag.Title = "User List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("~/Account/Login");
+    }
+}
+
+<h2>User List</h2>
+<br />
+<table id="userTable" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>User Name</th>
+            <th>Email Address</th>
+            <th>Date Registered</th>
+        </tr>
+    </thead>
+</table>
+
+<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+@section scripts{
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap.min.js"></script>
+
+    <script>
+        var dataTable;
+        $(document).ready(function () {
+            dataTable = $("#userTable").DataTable({
+                "ajax": {
+                    "url": "/User/GetUserList",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "UserName" },
+                    { "data": "Email" },
+                    { "data": "DateRegister"}
+                ],
+                "language": {
+                    "emptyTable": "No data found..."
+                }
+            });
+        });
+    </script>
+}
+
+@*, "render" : function sqlToJsDate(sqlDate)
+                        {
+                            //sqlDate in SQL DATETIME format ("yyyy-mm-dd hh:mm:ss.ms")
+                            var sqlDateArr1 = sqlDate.split("-");
+                            //format of sqlDateArr1[] = ['yyyy','mm','dd hh:mm:ms']
+                            var sYear = sqlDateArr1[0];
+                            var sMonth = (Number(sqlDateArr1[1]) - 1).toString();
+                            var sqlDateArr2 = sqlDateArr1[2].split(" ");
+                            //format of sqlDateArr2[] = ['dd', 'hh:mm:ss.ms']
+                            var sDay = sqlDateArr2[0];
+                            var sqlDateArr3 = sqlDateArr2[1].split(":");
+                            //format of sqlDateArr3[] = ['hh','mm','ss.ms']
+                            var sHour = sqlDateArr3[0];
+                            var sMinute = sqlDateArr3[1];
+                            var sqlDateArr4 = sqlDateArr3[2].split(".");
+                            //format of sqlDateArr4[] = ['ss','ms']
+                            var sSecond = sqlDateArr4[0];
+                            var sMillisecond = sqlDateArr4[1];
+                            return new Date(sYear, sMonth, sDay, sHour, sMinute, sSecond, sMillisecond);
+                        }*@

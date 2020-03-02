@@ -77,20 +77,6 @@ namespace Forestitan.Controllers
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         //[HttpPost]
         //public ActionResult AddStudent(Student model)
         //{
