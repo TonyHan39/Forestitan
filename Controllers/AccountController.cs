@@ -89,6 +89,7 @@ namespace Forestitan.Controllers
                 return Json(new { data = user }, JsonRequestBehavior.AllowGet);
             }
         }
+
         //protected ActionResult SignUp(object sender, EventArgs e)
         //{
         //    try
