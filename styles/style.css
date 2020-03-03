@@ -423,6 +423,7 @@ text-align: left;
     cursor: pointer;
     transition: 0.5s all;
 }
+.button.btnn2:hover {background: #000;color: #fff;}
 button[type=submit] {
 width:35%;
 background: #f47721;

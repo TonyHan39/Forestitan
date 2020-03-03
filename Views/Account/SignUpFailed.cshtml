@@ -1,10 +1,11 @@
 ﻿
 @{
-    ViewBag.Title = "SignUpFailed";
+    ViewBag.Title = "Sign Up Failed";
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+
 }
 
-
+    <link href="~/styles/style.css" rel="stylesheet" />
     <body>
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         <div class="art-bothside">
@@ -14,10 +15,10 @@
                         <div class="for">
                             The Email Address you have entered is already exists.
                         </div>
-                        <div class="btnn2">
+                        <div style="width: 35%;margin:auto; background: #f47721;outline: none;color: #fff;font-size: 13px; border: none;padding: 14px 6px;letter-spacing: 1px;text-transform: uppercase; cursor: pointer;transition: 0.5s all;">
                             @using (Html.BeginForm(FormMethod.Post))
                             {
-                                <button>@Html.ActionLink("Sign Up Again", "Login", "Account")</button>
+                                <a href="@Url.Action("Login", "Account")" style="color:white;">Sign Up Again</a>
                             }
                         </div>
                     </div>
