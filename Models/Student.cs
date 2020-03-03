@@ -11,27 +11,14 @@ namespace Forestitan.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Student
     {
         public int ID { get; set; }
-
-        [Required(ErrorMessage = "*Required")]
         public string First_Name { get; set; }
-
-        [Required(ErrorMessage = "*Required")]
         public string Last_Name { get; set; }
-        [Required(ErrorMessage = "*Required")]
-        [EmailAddress]
         public string Email { get; set; }
-
-        [Required(ErrorMessage = "*Required")]
-        [MinLength(10)]
-        [MaxLength(12)]
         public string PhoneNo { get; set; }
-
-        [Required(ErrorMessage = "*Required")]
         public string Course { get; set; }
     }
 }
