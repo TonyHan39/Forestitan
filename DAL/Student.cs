@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Forestitan.Models
+namespace DAL
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class UserAccount
+    public partial class Student
     {
-        public System.Guid UserID { get; set; }
-        public string UserName { get; set; }
+        public int ID { get; set; }
+        public string First_Name { get; set; }
+        public string Last_Name { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
-        public Nullable<System.DateTime> DateRegister { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public string PhoneNo { get; set; }
+        public string Course { get; set; }
     }
 }

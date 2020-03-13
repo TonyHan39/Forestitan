@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Auth0.Core, Version=7.0.2.0, Culture=neutral, PublicKeyToken=afe355c419914736, processorArchitecture=MSIL">
+      <HintPath>packages\Auth0.Core.7.0.2\lib\net452\Auth0.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Auth0.ManagementApi, Version=7.0.2.0, Culture=neutral, PublicKeyToken=afe355c419914736, processorArchitecture=MSIL">
+      <HintPath>packages\Auth0.ManagementApi.7.0.2\lib\net452\Auth0.ManagementApi.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -229,40 +235,43 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\dbStudentModel1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>dbStudentModel1.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\dbStudentModel1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>dbStudentModel1.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\dbStudentModel1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>dbStudentModel1.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\dbUserModel1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>dbUserModel1.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\dbUserModel1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>dbUserModel1.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\dbUserModel1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>dbUserModel1.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\PasswordEncyption.cs" />
     <Compile Include="Models\Student.cs">
       <DependentUpon>dbStudentModel1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserAccount.cs">
+      <DependentUpon>dbUserModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserActivation.cs">
       <DependentUpon>dbUserModel1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -325,23 +334,29 @@
     <Content Include="images\flogo.png" />
     <Content Include="images\Pine_Forest.jpg" />
     <Content Include="Models\dbStudentModel1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>dbStudentModel1.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>dbStudentModel1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\dbStudentModel1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
+    <Content Include="Models\dbStudentModel1.edmx.diagram">
       <DependentUpon>dbStudentModel1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\dbStudentModel1.tt">
+      <DependentUpon>dbStudentModel1.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>dbStudentModel1.cs</LastGenOutput>
     </Content>
     <Content Include="Models\dbUserModel1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>dbUserModel1.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>dbUserModel1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\dbUserModel1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
+    <Content Include="Models\dbUserModel1.edmx.diagram">
       <DependentUpon>dbUserModel1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\dbUserModel1.tt">
+      <DependentUpon>dbUserModel1.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>dbUserModel1.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
@@ -358,20 +373,7 @@
     <Content Include="fonts\fa-solid-900.ttf" />
     <Content Include="fonts\fa-solid-900.woff" />
     <Content Include="fonts\fa-solid-900.woff2" />
-    <EntityDeploy Include="Models\dbStudentModel1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>dbStudentModel1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\dbStudentModel1.edmx.diagram">
-      <DependentUpon>dbStudentModel1.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Models\dbUserModel1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>dbUserModel1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\dbUserModel1.edmx.diagram">
-      <DependentUpon>dbUserModel1.edmx</DependentUpon>
-    </Content>
+    <Content Include="EmailTemplate\Text.cshtml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -411,9 +413,11 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Welcome.cshtml" />
     <Content Include="Views\User\UserList.cshtml" />
+    <Content Include="Views\Account\Confirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Register\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -433,6 +437,26 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="DAL\DAL.csproj">
+      <Project>{009c1938-38bb-4b55-a16d-95860789f457}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="EmailSender\EmailSender.csproj">
+      <Project>{598c1676-541e-40ed-9cc8-e5479fbc1d7b}</Project>
+      <Name>EmailSender</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Models\dbStudentModel1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>dbStudentModel1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="Models\dbUserModel1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>dbUserModel1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

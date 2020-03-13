@@ -12,13 +12,9 @@ namespace Forestitan.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UserAccount
+    public partial class UserActivation
     {
         public System.Guid UserID { get; set; }
-        public string UserName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public Nullable<System.DateTime> DateRegister { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public Nullable<System.Guid> ActivationCode { get; set; }
     }
 }

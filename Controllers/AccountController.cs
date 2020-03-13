@@ -5,7 +5,10 @@ using System.Web;
 using System.Web.Mvc;
 using Forestitan.Models;
 using System.Data.SqlClient;
-using System.Runtime.InteropServices;
+using Auth0.ManagementApi.Models;
+using DAL;
+using DAL.Repo;
+using EmailSender;
 
 namespace Forestitan.Controllers
 {
@@ -23,12 +26,12 @@ namespace Forestitan.Controllers
         }
 
         [HttpPost]
-        public ActionResult Verify(UserAccount acc)
+        public ActionResult Verify(Models.UserAccount acc)
         {
             using (var dataContext = new UsersEntities())
             {
                 var _passWord = PasswordEncryption.textToEncrypt(acc.Password);
-                UserAccount user = dataContext.UserAccounts.Where(x => x.Email == acc.Email && x.Password == _passWord).SingleOrDefault();
+                Models.UserAccount user = dataContext.UserAccounts.Where(x => x.Email == acc.Email && x.Password == _passWord).SingleOrDefault();
 
                 if (user==null)
                 {
@@ -43,7 +46,6 @@ namespace Forestitan.Controllers
                     return RedirectToAction("Welcome", "Account");
                 }
             }
-            
         }
         public ActionResult LogOut()
         {
@@ -57,24 +59,62 @@ namespace Forestitan.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Register(UserAccount userModel)
+        public ActionResult Register(RegisterModel userModel)
         {
-            using (UsersEntities dbmodel = new UsersEntities())
+            //using (UsersEntities dbmodel = new UsersEntities())
+            //{
+            //    if (dbmodel.UserAccounts.Any(x => x.Email == userModel.Email))
+            //    {
+            //        return View("SignUpFailed");
+            //    }
+            //    UserAccount user = new UserAccount();
+            //    userModel.UserID = Guid.NewGuid();
+            //    userModel.DateRegister = DateTime.Now;
+            //    userModel.Password = PasswordEncryption.textToEncrypt(userModel.Password);
+            //    BuildEmailTemplate(userModel.UserID);
+            //    dbmodel.UserAccounts.Add(userModel);
+            //    dbmodel.SaveChanges();
+            //    ModelState.Clear();
+            //    return View("SignUp", user);
+            //}
+            if (ModelState.IsValid)
             {
-                if (dbmodel.UserAccounts.Any(x => x.Email == userModel.Email))
+                UserRepo user = new UserRepo();
+
+                if (user.CheckEmail(userModel.Email))
+                {
+                    userModel.Password = PasswordEncryption.textToEncrypt(userModel.Password);
+                    user.saveAtLogin(userModel);
+                    EmailBuilder.BuildEmailTemplateForNewUser(userModel.UserID);
+                    string msg = "An Account Activation Request has been sent to your Email, kindly check your Email`3301`";
+                    return RedirectToAction("SignUp", "Account", new { msg });
+                }
+                else
                 {
                     return View("SignUpFailed");
                 }
-                UserAccount user = new UserAccount();
-                userModel.UserID = Guid.NewGuid();
-                userModel.DateRegister = DateTime.Now;
-                userModel.Password = PasswordEncryption.textToEncrypt(userModel.Password);
-                dbmodel.UserAccounts.Add(userModel);
-                dbmodel.SaveChanges();
-                ModelState.Clear();
-                return View("SignUp", user);
             }
+            return View();
         }
+
+        public ActionResult Confirm(Guid id)
+        {
+            UserRepo obj = new UserRepo();
+            ViewBag.regID = id;
+
+            var userInfo = obj.GetUser(id);
+            ViewBag.NewUser = userInfo.UserName;
+            return View();
+        }
+
+        public JsonResult RegisterConfirm(Guid id)
+        {
+            UserRepo obj = new UserRepo();
+            obj.ActivateAccount(id);
+            var msg = "Your Email is Verified! Welcome to the Team!";
+            return Json(msg, JsonRequestBehavior.AllowGet);
+        }
+
 
         public ActionResult Welcome()
         {

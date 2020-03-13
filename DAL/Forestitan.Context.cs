@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Forestitan.Models
+namespace DAL
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class UsersEntities : DbContext
+    public partial class Forestitan : DbContext
     {
-        public UsersEntities()
-            : base("name=UsersEntities")
+        public Forestitan()
+            : base("name=Forestitan")
         {
         }
     
@@ -25,6 +25,7 @@ namespace Forestitan.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
         public virtual DbSet<UserActivation> UserActivations { get; set; }
     }

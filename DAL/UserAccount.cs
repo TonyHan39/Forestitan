@@ -7,16 +7,34 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Forestitan.Models
+namespace DAL
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Diagnostics.CodeAnalysis;
     
     public partial class UserAccount
     {
+        [SuppressMessage("MicrosoftUsage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public System.Guid UserID { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
+        public Nullable<System.DateTime> DateRegister { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+    }
+
+    public class RegisterModel
+    {
+        public System.Guid UserID { get; set; }
+        [Required]
+        public string UserName { get; set; }
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+        [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         public Nullable<System.DateTime> DateRegister { get; set; }
         public Nullable<bool> IsActive { get; set; }
